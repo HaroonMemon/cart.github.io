@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login</title>
+</head>
+<style>
+    @media screen and (min-width: 200px) {
+
+        * {
+            margin: 0px;
+            padding: 0px;
+            box-sizing: border-box;
+            font-family: sans-serif;
+        }
+
+        .container {
+            width: 100%;
+            padding: 1px;
+            /* height: 100vh; */
+            background-color: #fee300;
+            overflow: hidden;
+        }
+
+        .container .inner {
+            margin: 100px auto;
+            position: relative;
+            padding: 10px;
+            width: 90%;
+            height: auto;
+            border-radius: 5px;
+            box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
+        }
+
+        .container .inner .arrow {
+            position: absolute;
+            /* width: 16px; */
+            top: 10px;
+            left: 10px;
+        }
+
+        .container .inner .arrow img {
+            width: 14px;
+        }
+
+        .container .inner .header {
+            margin: 60px 0px 0px 0px;
+            width: 100%;
+            height: auto;
+            display: flex;
+            flex-direction: row;
+            text-transform: uppercase;
+            /* border: 1px solid; */
+        }
+
+        .container .inner .header .heading {
+            width: 50%;
+            height: auto;
+            /* border: 1px solid; */
+        }
+
+        .container .inner .header .pages {
+            width: 50%;
+            height: auto;
+            display: flex;
+            flex-direction: row-reverse;
+        }
+
+        .container .inner .header .pages h1 {
+            height: 80px;
+            width: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 3px solid;
+            border-radius: 50%;
+        }
+
+        .container .inner .form {
+            margin: 30px auto 0px auto;
+            width: 100%;
+            height: auto;
+        }
+
+        .container .inner .form input {
+            margin: 5px 0px 0px 0px;
+            padding: 10px 10px;
+            width: 100%;
+            background: transparent;
+            outline: none;
+            border: 1px solid rgb(110, 106, 106);
+            border-radius: 5px;
+            color: black;
+        }
+
+        ::placeholder {
+            color: black;
+            font-size: 1rem;
+        }
+
+        .container .inner .form input:focus {
+            border: 1px solid black;
+        }
+
+        .container .inner .form select {
+            margin: 5px 0px 0px 0px;
+            padding: 10px 10px;
+            width: 100%;
+            background: transparent;
+            outline: none;
+            border: 1px solid rgb(110, 106, 106);
+            border-radius: 5px;
+            color: black;
+            font-size: 1rem;
+        }
+
+        .container .inner .form select:focus {
+            border: 1px solid black;
+        }
+
+        .container .inner .form #login {
+            margin: 10px 0px 0px 0px;
+            padding: 10px 10px;
+            width: 100%;
+            background-color: black;
+            outline: none;
+            border-radius: 5px;
+            color: white;
+            border: 1px solid black;
+            transition: 1s;
+            font-size: 16px;
+        }
+
+        .container .inner .form #login:hover {
+            cursor: grab;
+            color: black;
+            background-color: transparent;
+            border: 1px solid rgb(110, 106, 106);
+        }
+
+        .container .inner .form #signup {
+            margin: 10px 0px 50px 0px;
+            padding: 10px 10px;
+            width: 100%;
+            display: block;
+            text-decoration: none;
+            text-align: center;
+            background: transparent;
+            outline: none;
+            border: none;
+            border-radius: 5px;
+            color: black;
+            transition: 1s;
+            font-size: 16px;
+        }
+
+        .container .inner .form #signup:hover {
+            cursor: grab;
+            color: white;
+            background-color: black;
+
+        }
+    }
+
+    @media screen and (min-width: 900px) {
+        .container .inner {
+            margin: 100px auto;
+            padding: 10px;
+            width: 300px;
+            height: auto;
+            border-radius: 5px;
+            box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
+        }
+    }
+</style>
+
+<body>
+    <div class="container">
+        <div class="inner">
+            <a href="index.html" class="arrow"><img src="images/326518_arrow_back_icon.png" alt=""></a>
+            <div class="header">
+                <h1 class="heading">
+                    login <br> account
+                </h1>
+                <div class="pages">
+                    <h1><span>2/2</span></h1>
+                </div>
+            </div>
+            <div class="form">
+                <!-- <input type="text" name="" placeholder="Enter Your Name here" id="name"> -->
+                <input type="email" name="" placeholder="Enter Your Email here" id="email">
+                <input type="password" name="" placeholder="Enter Your Password here" id="password">
+                <button id="login">Login</button>
+                <a href="index.html" id="signup">Sign Up</a>
+            </div>
+        </div>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-database.js"></script>
+    <script>
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyAQEkXXWO0go-Vl-aMD09YCRf3TdgshB3g",
+            authDomain: "mini-hack-a06bd.firebaseapp.com",
+            databaseURL: "https://mini-hack-a06bd-default-rtdb.firebaseio.com",
+            projectId: "mini-hack-a06bd",
+            storageBucket: "mini-hack-a06bd.appspot.com",
+            messagingSenderId: "279296639552",
+            appId: "1:279296639552:web:9e1b52b2651d389ec8d5a5"
+        };
+
+        firebase.initializeApp(firebaseConfig)
+
+
+
+    </script>
+    <script src="app.js"></script>
+</body>
+
+</html>
